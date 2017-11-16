@@ -59,4 +59,8 @@ git checkout -b [name]
 
 # 删除分支
 git branch -d [name]
+
+# 彻底删除历史提交记录的方法
+git reset --hard commit_hash 
+git push origin HEAD --force
 ```
