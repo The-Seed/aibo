@@ -66,4 +66,8 @@ git branch -d [name]
 # 彻底删除历史提交记录的方法
 git reset --hard commit_hash 
 git push origin HEAD --force
+
+# 合并分支
+git merge [that branch name]
+git push origin [this branch name]
 ```
