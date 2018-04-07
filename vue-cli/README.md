@@ -1,6 +1,6 @@
 # vue-cli
 
-> vue-cli test
+> vue-cli test 1
 
 ## Build Setup
 
