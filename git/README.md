@@ -51,6 +51,9 @@ git branch -a
 # 创建本地分支
 git branch [name]
 
+# 推送本地分支到远程分支
+git push origin [name]
+
 # 切换分支
 git checkout [name]
 
