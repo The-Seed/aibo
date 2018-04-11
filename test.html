@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>问卷设置_华规软件</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+</head>
+<body>
+
+<style>
+
+	*, *::before, *::after {margin: 0; padding: 0; box-sizing: border-box;}
+	.input, .textarea {width: 100%; padding: 5px; border: 1px solid #ddd; font: 14px/18px arial; outline: none;}
+	.input--mini {width: 60px;}
+	.input:focus, .textarea:focus {border-color: #aaa;}
+	.button {padding: 0 10px; border: 1px solid #ddd; color: #333; font: 14px/30px arial; outline: none; cursor: pointer;}
+	.button + .button {margin-left: 10px;}
+
+	.form {width: 600px; margin: 0 auto; padding: 10px; border: 1px solid #ddd;}
+
+	.form h2 {margin-bottom: 10px; border-bottom: 1px solid #ddd; color: #333; font: 18px/24px arial;}
+	.form-item {display: table; position: relative; width: 100%; margin-bottom: 22px;}
+	.form-item--center {text-align: center;}
+	.form-item__label {display: table-cell; width: 100px; line-height: 30px; text-align: right; vertical-align: top;}
+	.form-item__label::after {content: '：';}
+	.is-required .form-item__label::before {content: '*'; margin-right: 5px; color: red;}
+	.form-inline .form-item__label,
+	.form-inline .form-item__content {display: inline-block; width: auto; margin-right: 5px;}
+	
+	.form-item__content {display: table-cell;}
+	.form-item__message {display: none; position: absolute; bottom: -22px; left: 100px; font: 12px/22px arial;}
+	.is-success .form-item__message {color: green;}
+	.is-error .form-item__message {color: red;}
+	.is-success .form-item__message,
+	.is-error .form-item__message {display: block;}
+
+	.image--pace {position: relative; width: 200px; height: 200px; margin-bottom: 10px; background: #ddd;}
+	.image--pace:after {content: '加载中...'; position: absolute; top: 50%; left: 50%; margin: -12px 0 0 -27px; color: dodgerblue; font: 14px/24px arial;}
+	.image--null:after {content: '暂无图片';}
+	.image--pace img {display: none;}
+
+</style>
+
+<div class="form">
+
+	<h2>问卷设置</h2>
+
+	<div class="form-item is-required">
+		<label for="name" class="form-item__label">问卷标题</label>
+		<div class="form-item__content">
+			<input type="text" id="name" name="name" class="input" placeholder="请输入问卷标题">
+		</div>
+		<div class="form-item__message">123</div>
+	</div>
+
+	<div class="form-item">
+		<label for="picId" class="form-item__label">封面图片</label>
+		<div class="form-item__content">
+			<div class="image--pace image--null">
+				<img src="./quiz-setting.png" width="200" height="200" alt="">
+			</div>
+			<input type="file" id="picId" name="picId" class="input">
+		</div>
+	</div>
+
+	<div class="form-item">
+		<label for="dscr" class="form-item__label">活动简介</label>
+		<div class="form-item__content">
+			<textarea class="textarea" id="dscr" name="dscr" maxlength="200" placeholder="最多不超过200字"></textarea>
+		</div>
+	</div>
+
+	<div class="form-item">
+		<label for="" class="form-item__label">题量设置</label>
+		<div class="form-item__content">
+			<div class="form-item form-inline">
+				<label for="simpleCount" class="form-item__label">简单</label>
+				<div class="form-item__content">
+					<input type="number" id="simpleCount" name="simpleCount" class="input input--mini" value="0">
+				</div>
+				<label for="generalCount" class="form-item__label">一般</label>
+				<div class="form-item__content">
+					<input type="number" id="generalCount" name="generalCount" class="input input--mini" value="0">
+				</div>
+				<label for="difficultCount" class="form-item__label">困难</label>
+				<div class="form-item__content">
+					<input type="number" id="difficultCount" name="difficultCount" class="input input--mini" value="0">
+				</div>
+				<label for="" class="form-item__label">总计</label>
+				<div class="form-item__content">0</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-item">
+		<label for="" class="form-item__label">得分设置</label>
+		<div class="form-item__content">
+			<div class="form-item form-inline">
+				<label for="simpleScore" class="form-item__label">简单</label>
+				<div class="form-item__content">
+					<input type="number" id="simpleScore" name="simpleScore" class="input input--mini" value="0">
+				</div>
+				<label for="generalScore" class="form-item__label">一般</label>
+				<div class="form-item__content">
+					<input type="number" id="generalScore" name="generalScore" class="input input--mini" value="0">
+				</div>
+				<label for="difficultScore" class="form-item__label">困难</label>
+				<div class="form-item__content">
+					<input type="number" id="difficultScore" name="difficultScore" class="input input--mini" value="0">
+				</div>
+				<label for="" class="form-item__label">满分</label>
+				<div class="form-item__content">0</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-item form-item--center">
+		<button type="submit" class="button">保存</button>
+		<button type="reset" class="button">取消</button>
+	</div>
+	
+
+</div>
+
+<!--
+题目说明:
+
+制作一个“问卷设置”页面，UI界面参考图片quiz-setting.png，按图设置基本排版，细节样式不要求完全一致。
+
+## 题目要求
+
+1. 基本功能：(共20分)
+- 打开页面时，调用后台“获取问卷设置”接口(Quiz.get)，显示以下内容：问卷标题，活动简介。（10分）
+- 修改上述任何字段，并点击“确定”按钮后，调用“设置问卷”接口(Quiz.set)保存配置。如果刷新页面，可显示修改后的配置信息。（10分）
+
+2. 题库设置功能（共20分）
+- 调用Quiz.get接口，填充“题量设置”及“得分设置”各字段，在页面上更改任何一个设置字段，可自动重算“总计”和“满分”。（10分）
+  例如，类别为“简单”的题有10道, 每道题5分；“一般”的题目有5道，每道题10分；“困难”的题有2道，每道题20分。这样可计算出“总计”=10+5+2=17，“满分”=10*5 + 5*10 + 2*20 = 140。
+- 修改题量或得分后，点击“确定”按钮，可调用后台Quiz.set接口保存修改内容。如果刷新页面，可显示更新后的内容。（10分）
+
+3. 在点击“确定”按钮即将保存时要求验证数据，对非法数据予以报错，不允许保存：(共20分)
+- 问卷标题不可为空。(10分)
+- “题量”或“得分”设置中每一项的值要求为0或正整数。(10分)
+
+需要用到的服务端接口说明如下：
+
+## 接口：获取问卷设置
+
+	Quiz.get() -> { id, name, dscr, picId, setting }
+
+返回字段说明：
+
+id:: Integer. 问卷编号。
+name:: String. 问卷标题
+dscr:: String. 活动简介
+picId:: Integer. 封面图片
+setting:: List(type, quantity, score). 题量设置。一个字符串，格式为"简单:10:5,一般:5:10,困难:2:20", 它表示:
+ type="简单"的题有quantity=10道, 每道题score=5分；“一般”的题目有5道，每道题10分；“困难”的题有2道，每道题20分。
+
+调用说明：
+
+	GET http://oliveche.com/quiz/api.php/Quiz.get
+
+返回示例：
+
+	[0, {"id": 32, "name": "问卷1", "dscr": "描述1", picId: 9, setting: "简单:10:5,一般:5:10,困难:2:20"}]
+
+返回JSON格式的一个数组，表示 [retcode, retvalue]，retcode=0表示调用成功, retvalue符合接口定义中返回类型。
+如果retcode为非0，表示调用失败，retvalue表示错误信息，例如：
+
+	[1, "数据库错误"]
+
+注意：
+
+- 为笔试方便，Quiz中的数据暂存于session中，如果想重置Quiz中的数据，可关闭浏览器后重开。
+- 后台接口已允许跨域调用，可以本地调用，下面代码中已设置跨域选项: xhr.withCredentials=true. 请勿删除。
+
+## 接口：设置问卷
+
+	Quiz.set(id)(name?, dscr?, pidId?, setting?)
+
+参数说明
+
+id:: Integer. 使用Quiz.get返回内容中的id填写. 注意需通过URL参数传递。
+
+其它字段需要通过POST参数传递。参数含义及格式参见“获取问题设置”接口中的返回字段说明。
+
+调用说明：
+
+	POST http://oliveche.com/quiz/api.php/Quiz.set?id=32
+
+参数通过POST内容传递，使用URL编码方式，如：
+
+	name=myname&dscr=mydscr&picId=3&setting=简单:10:5,一般:5:10,困难:2:20&score=140
+	
+调用成功返回示例：
+
+	[0, "OK"]
+
+调用失败返回示例：
+
+	[1, "数据库错误"]
+
+-->
+
+<script>
+$.ajaxSetup({
+	xhrFields: { withCredentials: true} // 调试时允许跨域调用
+});
+</script>
+<script>
+(function($){
+
+	let config = {};
+	let tools = {
+		init: _ => { //初始化
+			tools.get();
+		},
+		get: _ => { //获取问卷设置
+			$.ajax({
+				url:"http://oliveche.com/quiz/api.php/Quiz.get",
+				data: {},
+				dataType: 'get',
+				timeout: 30000,
+				xhrFields: {withCredentials: true}, // 调试时允许跨域调用
+				success: res => {
+					console.log(res);
+				},
+				error: res => {
+					alert('请求超时或发生异常，请联系客服！');
+				}
+			});
+		}
+	};
+	tools.init();
+
+
+})(window.jQuery);
+</script>
+
+</body>
+</html>
